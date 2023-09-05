@@ -72,38 +72,3 @@
  % Output:
  #show plan/3.
  #show occurs/3.
-
-%% Folgendes kann eigentlich weg!
-%% Möglichkeit um "move" aus "mif_to_asprilo.lp" zu nutzen, ebenso wie "path".
-%% Ist aber superlangsam wenn es auch innerhalb "solve.lp" genutzt wird; 
-%% wird das aber auf eine schon berechnete "path" solution angewand ist es sehr schnell. (keine Ahnung warum)
-	%%move(A,(X,Y),(X+1 ,Y  ),0) :- start(A,(X,Y)), plan(A, right, 0). 
-	%%move(A,(X,Y),(X   ,Y+1),0) :- start(A,(X,Y)), plan(A, up	, 0).
-	%%move(A,(X,Y),(X-1 ,Y  ),0) :- start(A,(X,Y)), plan(A, left	, 0).
-	%%move(A,(X,Y),(X   ,Y-1),0) :- start(A,(X,Y)), plan(A, down	, 0).
-	%%move(A,(X,Y),(X   ,Y  ),0) :- start(A,(X,Y)), plan(A, stay	, 0).
-	
-	%%move(A,(X,Y),(X+1 ,Y  ),T+1) :- move(A,(_,_),(X,Y),T), plan(A, right, T+1). 
-	%%move(A,(X,Y),(X   ,Y+1),T+1) :- move(A,(_,_),(X,Y),T), plan(A, up	 , T+1).
-	%%move(A,(X,Y),(X-1 ,Y  ),T+1) :- move(A,(_,_),(X,Y),T), plan(A, left , T+1).
-	%%move(A,(X,Y),(X   ,Y-1),T+1) :- move(A,(_,_),(X,Y),T), plan(A, down , T+1).
-	%%move(A,(X,Y),(X   ,Y  ),T+1) :- move(A,(_,_),(X,Y),T), plan(A, stay , T+1).
-		
-	%%path(A,(X,Y),(X',Y'))  :- move(A,(X,Y),(X',Y'),T).
-%%#show path/3.
-%%#show move/4.
-
-%% Änderungen/Kommentare: 
-%% 				- leichte Umstellung der Reihenfolge des Codes (hinter "delta")
-%%  	
-%%				- Zeilen 11; 18; 22-23: 
-%%					Hinzufügen weiterer Expansionsstufen: Falls die letzte Expansionsstufe durchlaufen wurde und wegen des gegebenen (makespan) Horizon
-%%                	kein weiterer Durchlauf erfolgt, dann werden weitere Durchläufe ausgeführt: Das Timelimit ist jeweils der (makespan) Horizon; 
-%%					der Graph wird weiter vergrößert ggf. bis zum Maximum (das Limit durch const maxexpans) erweitert.
-%%					(Das war das Problem von test_s5_a2_exchange(hard).lp) 
-%%
-%%				- Zeilen 65 ff:
-%%          		für output im Asprilo-Format
-%%              - Zeilen 76 ff:
-%% 					kann eigentlich Weg; wollte erst so das Asprilo-Format erhalten (durch nutzen von "mif_to_asprilo.lp" wenn man "move" als output hat.
-%%                  (Auch hätte man so "path" erhalten können.)
